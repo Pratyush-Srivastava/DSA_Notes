@@ -3,6 +3,9 @@ package Arrays;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Kadane's Algorithm (modified for both positive and negative numbers)
+ */
 public class MaxSubArraySum {
     public static void main(String[] args) {
         System.out.println(maxSubArraySum(Arrays.asList(2, 3, -8, 7, -1, 2, 3)));
@@ -12,19 +15,12 @@ public class MaxSubArraySum {
     }
 
     private static int maxSubArraySum(List<Integer> integers) {
-        int maxSum = Integer.MIN_VALUE;
-        int sum = 0;
-        int min = 0;
+        int maxEndingHere = 0;
+        int maxEndingSoFar = integers.get(0);
         for (Integer number : integers) {
-            sum += number;
-            int res = sum - min;
-            if (res > maxSum) {
-                maxSum = res;
-            }
-            if (sum < min) {
-                min = sum;
-            }
+            maxEndingHere = Math.max(number, maxEndingHere + number);
+            maxEndingSoFar = Math.max(maxEndingHere, maxEndingSoFar);
         }
-        return maxSum;
+        return maxEndingSoFar;
     }
 }
