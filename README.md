@@ -12,3 +12,7 @@ Arrays can be static or dynamic in java.
 Dynamic lists - arraylist 
 Static lists- array[]
 The internal implementation of dynamic list is - the size of the array doubles when the maximum limit is reached.
+
+Stability in sorting means if order of same elements remain same as original array.
+Stable: bubble sort, insertion sort, merge sort
+Unstable: selection sort, quick sort, heap sort
