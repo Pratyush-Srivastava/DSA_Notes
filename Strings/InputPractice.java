@@ -1,4 +1,4 @@
-package stringAlgo;
+package Strings;
 //import java.util.*;
 //import java.io.*;
 //

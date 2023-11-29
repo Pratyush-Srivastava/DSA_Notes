@@ -1,4 +1,4 @@
-package stringAlgo;
+package Strings;
 
 public class StringBuilderPractice {
 

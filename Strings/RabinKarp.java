@@ -1,7 +1,7 @@
 
-package stringAlgo;
+package Strings;
 import java.io.*;
-import java.util.*;
+
 public class RabinKarp {
 	public static void main(String[] args) throws Exception{
 		// TODO Auto-generated method stub
