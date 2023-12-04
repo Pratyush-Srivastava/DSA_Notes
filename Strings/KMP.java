@@ -1,63 +1,62 @@
 package Strings;
-import java.io.*;
-import java.util.HashMap;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+* KMP algorithm helps for pattern searching in O(text) + O(pattern). Space - O(pattern)
+ * It also works for cases when pattern have repetitions of characters.
+*/
 
 public class KMP {
 
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		System.out.println(" test cases?");
-		int t=Integer.parseInt(br.readLine());
-		while(t-- >0) {
-			System.out.println("enter a string");
-			String str=br.readLine();
-			System.out.println("enter a pattern");
-			String pat=br.readLine();
-			HashMap<Integer,Integer> map=lps(pat);
-			int i=0,j=0;
-			while(i<str.length()) {
-				j=0;
-				while(j<pat.length()) {
-					if(str.charAt(i)==pat.charAt(j)) {
-						i++;
-						j++;
-						if(i>=str.length())
-							break;
-						if(j==pat.length()) 
-						{
-							System.out.println(" index at "+(i-pat.length()));
-							j=map.get(j-1);
-							i++;
-						}
-					}
-					else {
-						j=map.get(j-1);
-						i++;
-						break;
-					}
-				}
-			}
-			
-		}
-		
+    public static void main(String[] args) {
+        System.out.println(kmpPatternMatching("ababcababaad", "ababa"));
+        System.out.println(kmpPatternMatching("aaaaab", "aaaa"));
+    }
 
-	}
-	static HashMap<Integer,Integer> lps(String pat){
-		HashMap<Integer,Integer> map=new HashMap<>();
-		for(int j=0;j<pat.length();j++) {
-			int i=0,count=pat.length()-1;
-			while(i<pat.length()-1 && !(pat.substring(0,pat.length()-i-1)).equals(pat.substring(i+1,pat.length()))) {
-				i++;
-				count--;
-			}
-			map.put(j,count);
-			System.out.println(j+" key and value"+count);
-			
-		}
-		
-		
-		return map;
-	}
+    private static List<Integer> kmpPatternMatching(String text, String pattern) {
+        List<Integer> indices = new ArrayList<>();
+        int t = 0;
+        int p = 0;
+        int[] lpsOfPattern = lpsOfPattern(pattern);
+        while (t < text.length() && p < pattern.length()) {
+            if (text.charAt(t) == pattern.charAt(p)) {
+                t++;
+                p++;
+            } else {
+                if (p == 0) {
+                    t++;
+                } else {
+                    p = lpsOfPattern[p - 1];
+                }
+            }
+            if (p == pattern.length()) {
+                indices.add(t - pattern.length());
+                p = lpsOfPattern[p - 1];
+            }
+        }
+        return indices;
+    }
+
+    private static int[] lpsOfPattern(String pattern) {
+        int[] lps = new int[pattern.length()];
+        lps[0] = 0;
+        int i = 1;
+        int len = lps[i - 1];
+        while (i < pattern.length()) {
+            if (pattern.charAt(i) == pattern.charAt(len)) {
+                len++;
+                lps[i] = len;
+                i++;
+            } else if (len == 0) {
+                lps[i] = 0;
+                i++;
+            } else {
+                len = lps[len - 1];
+            }
+        }
+        return lps;
+    }
 
 }
