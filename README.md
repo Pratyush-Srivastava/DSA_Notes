@@ -16,3 +16,5 @@ The internal implementation of dynamic list is - the size of the array doubles w
 Stability in sorting means if order of same elements remain same as original array.
 Stable: bubble sort, insertion sort, merge sort
 Unstable: selection sort, quick sort, heap sort
+
+LRU (least recently used) Cache uses doubly linked list with head and tail pointer and hash table
