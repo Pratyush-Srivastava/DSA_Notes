@@ -7,6 +7,9 @@ Make note of
 3. Use of XOR operator in Bitwise/OneOddOccurring.java
 4. Finding last set bit in Bitwise/TwoOddOccurring.java
 5. Trapping water in Arrays/TrappingWater.java
+6. Stack logic of finding previous greater in Stack/StockSpan.java
+7. Infix to postfix logic in Stack/InfixToPostfix.java
+8. Infix to prefix logic in Stack/InfixToPrefix.java
 
 Arrays can be static or dynamic in java. 
 Dynamic lists - arraylist 
