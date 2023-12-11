@@ -21,3 +21,7 @@ Stable: bubble sort, insertion sort, merge sort
 Unstable: selection sort, quick sort, heap sort
 
 LRU (least recently used) Cache uses doubly linked list with head and tail pointer and hash table
+
+java.util.Stack = new Stack() -> push, pop, peek, size, isEmpty
+java.util.Queue = new ArrayDeque() -> offer, poll, peek, size, isEmpty
+java.util.Deque = new ArrayDeque() -> offerFirst, offerLast, pollFirst, pollLast, peekFirst, peekLast, size, isEmpty
