@@ -1,4 +1,4 @@
-package BinaryTrees;
+package BinaryTree;
 
 public class inOrderGivenOthers {
 

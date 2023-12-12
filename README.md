@@ -25,3 +25,8 @@ LRU (least recently used) Cache uses doubly linked list with head and tail point
 java.util.Stack = new Stack() -> push, pop, peek, size, isEmpty
 java.util.Queue = new ArrayDeque() -> offer, poll, peek, size, isEmpty
 java.util.Deque = new ArrayDeque() -> offerFirst, offerLast, pollFirst, pollLast, peekFirst, peekLast, size, isEmpty
+
+Binary tree traversals - 
+Inorder - left, root, right
+Preorder - root, left, right 
+Postorder - left, right, root

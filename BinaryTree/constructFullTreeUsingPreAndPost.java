@@ -1,5 +1,5 @@
-package BinaryTrees;
-import java.util.*;
+package BinaryTree;
+
 public class constructFullTreeUsingPreAndPost {
 
 	public static void main(String[] args) {

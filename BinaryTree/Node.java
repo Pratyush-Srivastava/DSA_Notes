@@ -1,9 +1,9 @@
-package BinaryTrees;
+package BinaryTree;
 
 public class Node {
-	Node left;
-	Node right;
-	int data;
+	protected Node left;
+	protected Node right;
+	protected int data;
 	public Node(int data) {
 		this.data=data;
 	}
