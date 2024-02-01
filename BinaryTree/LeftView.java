@@ -3,24 +3,25 @@ package BinaryTree;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class LevelOrderTraversal {
-
+public class LeftView {
     public static void main(String[] args) {
         Node root = initializeBinaryTree();
-        printLevelOrderTraversal(root);
-    }
-
-    protected static void printLevelOrderTraversal(Node root) {
         Queue<Node> queue = new ArrayDeque<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
+        queue.offer(root);
+        queue.offer(new Node());
+        System.out.print(root.data + " ");
+        while (queue.size() > 1) {
             Node node = queue.poll();
-            System.out.print(node.data + " ");
-            if (node.left != null) {
-                queue.offer(node.left);
-            }
-            if (node.right != null) {
-                queue.offer(node.right);
+            if (node.data == null) {
+                System.out.print(queue.peek().data + " ");
+                queue.offer(new Node());
+            } else {
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
             }
         }
     }

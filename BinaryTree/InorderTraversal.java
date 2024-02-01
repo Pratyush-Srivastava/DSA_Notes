@@ -7,7 +7,7 @@ public class InorderTraversal {
         root.right = new Node(50);
         inorderTraversal(root);
     }
-    private static void inorderTraversal(Node root) {
+    protected static void inorderTraversal(Node root) {
         if(root != null) {
             inorderTraversal(root.left);
             System.out.print(root.data + " ");
