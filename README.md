@@ -10,6 +10,7 @@ Make note of
 6. Stack logic of finding previous greater in Stack/StockSpan.java
 7. Infix to postfix logic in Stack/InfixToPostfix.java
 8. Infix to prefix logic in Stack/InfixToPrefix.java
+9. Binary search logic in Searching/SquareRoot.java
 
 Arrays can be static or dynamic in java. 
 Dynamic lists - arraylist 
@@ -30,3 +31,7 @@ Binary tree traversals -
 Inorder - left, root, right
 Preorder - root, left, right 
 Postorder - left, right, root
+
+Try using StringBuilder instead of concatenating strings like str = str + char/str. It improves the time consumed drastically
+Use Deque<Integer> stack = new ArrayDeque<>(); as stack to get lesser time.
+Use the same above for queue. So just remember this both stack and queue.
