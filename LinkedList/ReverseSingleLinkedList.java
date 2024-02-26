@@ -3,8 +3,14 @@ package LinkedList;
 public class ReverseSingleLinkedList {
     public static void main(String[] args) {
         Node head = initializeLinkedList();
-        head = reverseSingleList(head);
+        Node originalHead = head;
+        System.out.println("Original list before reversing = ");
         printSingleList(head);
+        Node reverseHead = reverseSingleList(head);
+        System.out.println("Original list after reversing = ");
+        printSingleList(originalHead);//doesnt print original list
+        System.out.println("Reversed list = ");
+        printSingleList(reverseHead);
     }
 
     private static void printSingleList(Node head) {

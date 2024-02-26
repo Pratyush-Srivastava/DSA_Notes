@@ -11,6 +11,10 @@ Make note of
 7. Infix to postfix logic in Stack/InfixToPostfix.java
 8. Infix to prefix logic in Stack/InfixToPrefix.java
 9. Binary search logic in Searching/SquareRoot.java
+10. BinaryTree/SortedArrayToBST.java
+11. Bitwise/ReverseBits.java
+12. Bitwise/CountSetBits.java
+13. LinkedList/ReverseSingleLinkedList.java
 
 Arrays can be static or dynamic in java. 
 Dynamic lists - arraylist 

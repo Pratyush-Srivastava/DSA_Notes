@@ -24,14 +24,16 @@ public class CountSetBits {
 
     //time complexity = O(number of bits)
     private static int countSetBits(int number) {
-        int result = 0;
-        while (number != 0) {
-            if ((number & 1) == 1) {
-                result++;
+        int count = 0;
+        int bits = 31;
+        //Iterate 31 bits instead of checking number != 0 because of negative numbers
+        while(bits-- >= 0) {
+            if((number & 1) == 1) {
+                count++;
             }
-            number = number / 2;
+            number = number >> 1;
         }
-        return result;
+        return count;
     }
 
     //Brian Kernighan's algorithm. time complexity = O(number of set bits)
