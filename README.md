@@ -25,11 +25,14 @@ Stability in sorting means if order of same elements remain same as original arr
 Stable: bubble sort, insertion sort, merge sort
 Unstable: selection sort, quick sort, heap sort
 
-LRU (least recently used) Cache uses doubly linked list with head and tail pointer and hash table
+LRU (least recently used) Cache uses doubly linked list with head and tail pointer and hash table 
+(check geeks for geeks video)
 
 java.util.Stack = new Stack() -> push, pop, peek, size, isEmpty
+Deque<Integer> stack = new ArrayDeque<>();
 java.util.Queue = new ArrayDeque() -> offer, poll, peek, size, isEmpty
-java.util.Deque = new ArrayDeque() -> offerFirst, offerLast, pollFirst, pollLast, peekFirst, peekLast, size, isEmpty
+java.util.Deque = new ArrayDeque() -> offerFirst, offerLast, pollFirst, pollLast, peekFirst, peekLast, size, isEmpty,
+stack functions are also supported -> pop, push, peek, size, isEmpty
 
 Binary tree traversals - 
 Inorder - left, root, right
