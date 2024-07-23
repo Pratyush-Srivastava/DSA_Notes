@@ -31,11 +31,12 @@
 14. For shortest path in a weighted directed acyclic graph (DAG), you can use topological sorting and then iterate over
     that array and perform edge relaxation which is to check min(source + edge, neighbor) and assign to neighbor. Make
     sure you don't add anything to MAX_VALUE.
+15. For shortest path with negative weights (directed or undirected), use bellman ford algorithm. For V-1 times, Traverse all edges and relax the edges if dist(u) + edgeLength is smaller than dist(v). Outer loop runs for V-1 and inner goes through all edges. Come out of the loop and traverse all edges once more and if any edge relaxes then there is a negative egde cycle. 
 
 | **Shortest path from source** | **Unweighted**       | **Weighted**                                                    |
 |-------------------------------|----------------------|-----------------------------------------------------------------|
-| **Directed**                  | BFS                  | Topological Sort (DAG only) or Dijkstra (non-negative weights)  |
-| **Undirected**                | BFS                  | Dijkstra                                                        |
+| **Directed**                  | BFS                  | Topological Sort (DAG only) or Dijkstra (non-negative weights) or Bellman ford (negative weights) |
+| **Undirected**                | BFS                  | Dijkstra or Bellman ford (negative weights)                                                    |
 
 15. For cycle detection in undirected graph, do BFS and store each parent in an array. if a neighbor is visited, and it
     is not the parent, then cycle exists. Or another solution would be use DFS and with each recursion call, pass the
