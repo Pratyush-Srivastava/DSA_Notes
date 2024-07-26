@@ -69,7 +69,6 @@
   Proceed only if it is not visited. Go through all neighbors which are not visited and relax the edge comparing edge
   weight and neighbor key. Reassign key for relaxing and offer the vertex and edge in the priority queue.
   This will be O(E Log V)
-* For undirected graph, You can just use dfs or bfs to find strongly connected components.
 * To find articulation points (if you remove these nodes then connected components > 1) in undirected graph, we need to
   have discovery time, lowest ancestor discovery time reachable, parent, visited array and then do dfs for every unvisited node.
   Imagine a dfs tree for this. Mark all the visited nodes and initialize the discovery time and lowest ancestor reachable using
@@ -85,3 +84,15 @@
   update lowestAncestor(u) = min(lowestAncestor(u), discovery(v)). If not visited,
   then after traversing all children, update lowestAncestor(u) = min(lowestAncestor(u), lowestAncestor(v)). 
   If lowestAncestor(v) > discovery(u) (Note there is no equality), then it is a bridge.
+* For undirected graph, You can just use dfs or bfs to find strongly connected components.
+* For directed graph, to find strongly connected components, you need to use Tarjan's algorithm. You need to do dfs in
+  this. Keep track of disc, low, visited, inStack, stack. Mark
+* For directed graph, to find strongly connected components (Each node can reach every other node within a component), we 
+  need to have discovery time, lowest ancestor discovery time reachable, (you dont need parent in directed graph), visited 
+  array and then do dfs for every unvisited node. Imagine a dfs tree for this. Mark all the visited nodes and initialize 
+  the discovery time and lowest ancestor reachable using global ++time variable. Also push this into stack like how you 
+  did for cycle detection. If it is visited and present in stack, it means it is a back edge and not a cross-edge, then 
+  update lowestAncestor(u) = min(lowestAncestor(u), discovery(v)). If not visited, then after traversing all children, 
+  update lowestAncestor(u) = min(lowestAncestor(u), lowestAncestor(v)). After the for loop of traversing all the children, 
+  check if the discovery time(u) = lowestAncestor(u), then this is the beginning of a strongly connected component, pop 
+  each item and add to list and do this until you reach u (add u as well). Add this component to the master list.
