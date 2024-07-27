@@ -1,5 +1,4 @@
-package dynamicProgramming;
-import java.util.*;
+package DynamicProgramming;
 import java.io.*;
 public class subsetSumPartition {
 

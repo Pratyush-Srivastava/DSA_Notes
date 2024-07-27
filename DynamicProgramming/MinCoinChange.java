@@ -1,4 +1,4 @@
-package dynamicProgramming;
+package DynamicProgramming;
 //Coin Change Problem Where Order Matters and Order doesn't matter.
 //{1,2,1} and {1,1,2} are same when order doesn't matter
 import java.util.*;

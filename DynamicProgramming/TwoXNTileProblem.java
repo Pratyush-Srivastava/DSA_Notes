@@ -1,6 +1,6 @@
-package dynamicProgramming;
+package DynamicProgramming;
 import java.io.*;
-import java.util.*;
+
 public class TwoXNTileProblem {
 	public static void main (String[] args) throws Exception {
 		//code

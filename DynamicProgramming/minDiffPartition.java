@@ -1,4 +1,4 @@
-package dynamicProgramming;
+package DynamicProgramming;
 
 import java.io.*;
 public class minDiffPartition {
