@@ -34,8 +34,7 @@
   initialize a tail array of same length as your array and also a len variable which will go as big as tail elements.
   Tail element means the last element ending with i. Initialize tail(0) = arr(0) and len = 1. Now, iterate over arr.
   If you find arr(i) > tail(len - 1), then tail(len) = arr(i) and do len++; if that condition fails, then you need to
-  put
-  arr(i) in the right place in the existing sorted array. To do that you need to replace ceil(arr(i)) with arr(i);
+  put arr(i) in the right place in the existing sorted array. To do that you need to replace ceil(arr(i)) with arr(i);
   Basically, int c = ceil(tail, 0, len -1, arr(i))
   tail(c) = arr(i); In the end return len. Note that tail will always be sorted at any point but may not contain the
   longest subsequence because we are replacing existing subsequences to save space. We just need the length. If you need
@@ -48,3 +47,37 @@
 * LIS can be used to find the max sum increasing subsequence. Here, we use N^2 Lis solution. Instead of finding max lis
   among j such that arr(j) < arr(i) and j < i, we find max sum among j such that arr(j) < arr(i) and then assign it to
   sum(i). In the end, we find the max of all sum(i)
+* LIS can be used to find the longest bitonic subsequence(first increasing and then decreasing) You need to construct 
+  lis array ending with i and lds array starting with i and then take the max of lis(i) + lds(i) - 1 because i was 
+  considered twice. For lds you just need to lis by traversing in a reverse way. This will take N^2. This can be done in
+  NlogN by using tail array method. Try to modify that method to get this.
+* LIS can be used in the bridges problem. If we have parallel points where 1 is opposite to 1 and 2 is opposite to 2 and
+  so on. If we have pairs like (6,2),(4,3),(2,6),(1,5) where we need to construct max bridges without inter-crossing.
+  First, we need to sort based on 1st value and if 1st value is same, then sort by second value. Now you can construct
+  LIS based on second value. It need not be longest strictly increasing, just increasing is fine. We can do it in NLogN
+* LIS can be used in the longest chain problem. We are given pairs of element (a,b) such that (a<b). (a,b) can form a
+  chain with (c,d) if b < c. First we need to sort by first values and then do LIS. While comparing two pairs, compare
+  b < c and then only calculate LIS. Doing this by tail method can be complicated because pairs p (5,24) q(15,28) r(27,40)
+  Here, p > q and q > r but p < r. For n log n you need to sort second values instead of first values.
+* Maximum cuts in a rod with certain allowed lengths is a problem like number of combinations of coins to get certain
+  sum. At each point, we need to either consider a specific length or not consider it all. If you consider it, you need
+  to add 1 to it and if you do not consider it you have to reduce that length from allowed lengths,
+  Math.max(1 + maxCuts(i)(j - allowedLengths(i - 1)), maxCuts(i - 1)(j)). Also take care of results with -1. A problem of
+  recursion could be of two types, one is consider that item/ not consider that item at all. Another type would be 
+  consider each item and reduce for all the items. Certain problems will alow only one option. If you take number of 
+  combinations of coins problem (1,1,2) is same as (2, 1, 1) so be careful will selecting that approach.
+* Minimum coins to make a value when you are given a list of denominations. You can take both recursive approaches
+  but approach of selecting each item can gives you space complexity of O(n). 
+  For minimumCoins(n) = Min(minimumCoins(n - den(0)) + 1, minimumCoins(n - den(1)) + 1, minimumCoins(n - den(2)) + 1...) 
+  Loop through all denominations and find the minimum coins. If it doesn't reach by reducing certain denominations, 
+  it will return Max.
+* Minimum number of jumps can be solved by dynamic programming in O(n^2) and in greedy solution in O(n).
+  If you want to solve by dynamic programming, you need to build a dynamic array in reverse because dp(n) = 0 and your 
+  answer will be in dp(0). For dp(n-1), you can take min of (dp(n) till arr(n - 1) values). For dp (n-2), you take min 
+  of dp(n -1), dp(n) ... arr(n-2) values. In this fashion you can reach dp(0). This solution will be O(n^2)
+  If you want to solve by greedy algorithm, you need to have a while loop with i = 0; Go through all the possible jump 
+  values of arr(i), see with which value (i+j), you are farthest element a(i+j)+(i+j) will improve. We are adding index as 
+  well because to find the farthest we do i+a(i). Once you found the value with farthest reach, jump to that and update
+  i value. keep doing this until you reach the end. This will take O(n)
+
+  
