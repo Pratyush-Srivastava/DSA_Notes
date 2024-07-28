@@ -71,7 +71,9 @@
   For minimumCoins(n) = Min(minimumCoins(n - den(0)) + 1, minimumCoins(n - den(1)) + 1, minimumCoins(n - den(2)) + 1...) 
   Loop through all denominations and find the minimum coins. If it doesn't reach by reducing certain denominations, 
   it will return Max.
-* Minimum number of jumps can be solved by dynamic programming in O(n^2) and in greedy solution in O(n).
+* Minimum number of jumps to reach end. You are given an array of integers where a(i) represents the max jump you can
+  take from i, which means you can reach max of i + a(i). You could choose to take lesser steps too. 
+  Minimum number of jumps can be solved by dynamic programming in O(n^2) and in greedy solution in O(n).
   If you want to solve by dynamic programming, you need to build a dynamic array in reverse because dp(n) = 0 and your 
   answer will be in dp(0). For dp(n-1), you can take min of (dp(n) till arr(n - 1) values). For dp (n-2), you take min 
   of dp(n -1), dp(n) ... arr(n-2) values. In this fashion you can reach dp(0). This solution will be O(n^2)

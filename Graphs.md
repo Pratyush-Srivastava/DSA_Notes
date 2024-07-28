@@ -96,5 +96,3 @@
   update lowestAncestor(u) = min(lowestAncestor(u), lowestAncestor(v)). After the for loop of traversing all the children, 
   check if the discovery time(u) = lowestAncestor(u), then this is the beginning of a strongly connected component, pop 
   each item and add to list and do this until you reach u (add u as well). Add this component to the master list.
-* Minimum number of jumps to reach end. You are given an array of integers where a(i) represents the max jump you can 
-  take from i, which means you can reach max of i + a(i). You could choose to take lesser steps too
