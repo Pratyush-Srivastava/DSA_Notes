@@ -64,8 +64,7 @@
   sum. At each point, we need to either consider a specific length or not consider it all. If you consider it, you need
   to add 1 to it and if you do not consider it you have to reduce that length from allowed lengths,
   Math.max(1 + maxCuts(i)(j - allowedLengths(i - 1)), maxCuts(i - 1)(j)). Also take care of results with -1. A problem
-  of
-  recursion could be of two types, one is consider that item/ not consider that item at all. Another type would be
+  of recursion could be of two types, one is consider that item/ not consider that item at all. Another type would be
   consider each item and reduce for all the items. Certain problems will alow only one option. If you take number of
   combinations of coins problem (1,1,2) is same as (2, 1, 1) so be careful will selecting that approach.
 * Minimum coins to make a value when you are given a list of denominations. You can take both recursive approaches
@@ -81,13 +80,21 @@
   of dp(n -1), dp(n) ... arr(n-2) values. In this fashion you can reach dp(0). This solution will be O(n^2)
   If you want to solve by greedy algorithm, you need to have a while loop with i = 0; Go through all the possible jump
   values of arr(i), see with which value (i+j), you are farthest element a(i+j)+(i+j) will improve. We are adding index
-  as
-  well because to find the farthest we do i+a(i). Once you found the value with farthest reach, jump to that and update
-  i value. keep doing this until you reach the end. This will take O(n)
+  as well because to find the farthest we do i+a(i). Once you found the value with farthest reach, jump to that and
+  update i value. keep doing this until you reach the end. This will take O(n)
 * In 0-1 knapsack max value problem, we either consider an item or not consider it. If we consider it, reduce the weight
-  from the
-  total weight and also reduce that item from that list. if you dont consider it, dont reduce the weight from the total
-  weight and reduce that item from that list.
-  value(i)(j) = Math.max(val(i - 1) + value(i - 1)(j - wt(i - 1), value(i - 1)(j));
-
+  from the total weight and also reduce that item from that list. if you dont consider it, dont reduce the weight from
+  the total weight and reduce that item from that list. value(i)(j) = 
+  Math.max(val(i - 1) + value(i - 1)(j - wt(i - 1), value(i - 1)(j));
+* In Optimal strategy of a game, an array of integer is given, you will pick one of the corner coins such that in 
+  the end you have max coins, your opponent also plays like that. You will not max of corner coins if you are exposing 
+  a bigger coin for the opponent.In the case of (2, 3, 15, 7). You will pick 2, opponent will take 7, you will take 15
+  opponent will take 3. For this, pass an array, starting index i, ending index j, aTurn (boolean to 
+  store if it is our turn or not). Since you are filling i, j in the fashion of (0,0) ,(1,1).. first and then
+  (0,1), (1,2), (2,3) and so on, we will fill the dp array such that diff = 0 till n - 1. If last turns is A, then you 
+  will fill dp(i, i) with all arr(i) values else you will keep it 0 because that was B's turn. If it is A's turn, then
+  take Math.max(arr(i) + maxAmount(i + 1)(j), arr(j) + maxAmount(i)(j - 1)). If it is B's turn, then dont add array
+  values and now you take the min because B would have taken the max Math.min(maxAmount(i + 1)(j), maxAmount(i)(j - 1))
+  Flip aTurn after you have completed an iteration of diff.
+* 
   
