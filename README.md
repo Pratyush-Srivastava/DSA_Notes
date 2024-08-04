@@ -16,10 +16,6 @@ Make note of
 12. Bitwise/CountSetBits.java
 13. LinkedList/ReverseSingleLinkedList.java
 
-Arrays can be static or dynamic in java. 
-Dynamic lists - arraylist 
-Static lists- array[]
-The internal implementation of dynamic list is - the size of the array doubles when the maximum limit is reached.
 
 Stability in sorting means if order of same elements remain same as original array.
 Stable: bubble sort, insertion sort, merge sort

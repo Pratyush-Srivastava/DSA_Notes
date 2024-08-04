@@ -1,120 +1,59 @@
 package Searching;
 
-// Java code for median with
-// case of returning double
-// value when even number of
-// elements are present in
-// both array combinely
-
 public class MedianOfTwoSorted {
 
-    static int[] a = new int[]{900};
-    static int[] b = new int[]{10, 13, 14};
+    public static void main(String[] args) {
+        int[] a1 = new int[]{1, 4, 9, 16};
+        int[] a2 = new int[]{2, 8, 15, 20, 25, 28};
+        System.out.println(findMedian(a1, a2)); //prints 12
 
-    // Function to find max
-    static int maximum(int a, int b) {
-        return Math.max(a, b);
+        a1 = new int[]{1, 4, 9, 16};
+        a2 = new int[]{2, 8, 15, 20, 25};
+        System.out.println(findMedian(a1, a2)); //prints 9
+
+        a1 = new int[]{1, 2, 3, 4, 5};
+        a2 = new int[]{6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17};
+        System.out.println(findMedian(a1, a2)); //prints 9
+
+        a1 = new int[]{4};
+        a2 = new int[]{0, 1, 2, 3};
+        System.out.println(findMedian(a1, a2)); //prints 2
     }
 
-    // Function to find minimum
-    static int minimum(int a, int b) {
-        return Math.min(a, b);
+    static double findMedian(int[] a, int[] b) {
+        if (a.length <= b.length) {
+            return getMedian(a, b);
+        } else {
+            return getMedian(b, a);
+        }
     }
 
-    // Function to find median
-    // of two sorted arrays
-    static double findMedianSortedArrays(int n, int m) {
+    private static double getMedian(int[] a1, int[] a2) {
+        int n1 = a1.length, n2 = a2.length;
 
-        int min_index = 0, max_index = n, i = 0, j = 0,
-                median = 0;
+        int low1 = 0;
+        int high1 = n1; //Note it is not n1 - 1
+        while (low1 <= high1) {
+            int mid1 = (low1 + high1)/2;
+            int mid2 = (n1 + n2 + 1)/2 - mid1;
+            int maxLeft1 = (mid1 == 0) ? Integer.MIN_VALUE: a1[mid1 - 1];
+            int minRight1 = (mid1 == n1)? Integer.MAX_VALUE: a1[mid1];
 
-        while (min_index <= max_index) {
-            i = (min_index + max_index) / 2;
-            j = ((n + m + 1) / 2) - i;
-
-            // if i = n, it means that Elements
-            // from a[] in the second half is an
-            // empty set. and if j = 0, it means
-            // that Elements from b[] in the first
-            // half is an empty set. so it is
-            // necessary to check that, because we
-            // compare elements from these two
-            // groups. Searching on right
-            if (i < n && j > 0 && b[j - 1] > a[i])
-                min_index = i + 1;
-
-                // if i = 0, it means that Elements
-                // from a[] in the first half is an
-                // empty set and if j = m, it means
-                // that Elements from b[] in the second
-                // half is an empty set. so it is
-                // necessary to check that, because
-                // we compare elements from these two
-                // groups. searching on left
-            else if (i > 0 && j < m && b[j] < a[i - 1])
-                max_index = i - 1;
-
-                // we have found the desired halves.
-            else {
-                // this condition happens when we
-                // don't have any elements in the
-                // first half from a[] so we
-                // returning the last element in
-                // b[] from the first half.
-                if (i == 0)
-                    median = b[j - 1];
-
-                    // and this condition happens when
-                    // we don't have any elements in the
-                    // first half from b[] so we
-                    // returning the last element in
-                    // a[] from the first half.
-                else if (j == 0)
-                    median = a[i - 1];
-                else
-                    median = maximum(a[i - 1], b[j - 1]);
-                break;
+            int maxLeft2 = (mid2 == 0) ? Integer.MIN_VALUE: a2[mid2 - 1];
+            int minRight2 = (mid2 == n2)? Integer.MAX_VALUE: a2[mid2];
+            if (maxLeft1 <= minRight2 && maxLeft2 <= minRight1) {
+                if((n1 + n2) % 2 == 0) {
+                    return ((double) (Math.max(maxLeft1, maxLeft2) + Math.min(minRight1, minRight2))) / 2;
+                } else {
+                    return Math.max(maxLeft1, maxLeft2);
+                }
+            } else if (maxLeft1 > minRight2) {
+                high1 = mid1 - 1;
+            } else {
+                low1 = mid1 + 1;
             }
         }
 
-        // calculating the median.
-        // If number of elements is odd
-        // there is one middle element.
-        if ((n + m) % 2 == 1)
-            return median;
-
-        // Elements from a[] in the
-        // second half is an empty set.
-        if (i == n)
-            return (median + b[j]) / 2.0;
-
-        // Elements from b[] in the
-        // second half is an empty set.
-        if (j == m)
-            return (median + a[i]) / 2.0;
-
-        return (median + minimum(a[i], b[j])) / 2.0;
+        throw new IllegalArgumentException("Input arrays are not sorted");
     }
-
-    // Driver code
-    public static void main(String[] args) {
-        int n = a.length;
-        int m = b.length;
-
-        // we need to define the
-        // smaller array as the
-        // first parameter to
-        // make sure that the
-        // time complexity will
-        // be O(log(min(n,m)))
-        if (n < m)
-            System.out.print(
-                    "The median is : "
-                            + findMedianSortedArrays(n, m));
-        else
-            System.out.print(
-                    "The median is : "
-                            + findMedianSortedArrays(m, n));
-    }
-
 }
