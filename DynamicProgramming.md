@@ -84,17 +84,16 @@
   update i value. keep doing this until you reach the end. This will take O(n)
 * In 0-1 knapsack max value problem, we either consider an item or not consider it. If we consider it, reduce the weight
   from the total weight and also reduce that item from that list. if you dont consider it, dont reduce the weight from
-  the total weight and reduce that item from that list. value(i)(j) = 
+  the total weight and reduce that item from that list. value(i)(j) =
   Math.max(val(i - 1) + value(i - 1)(j - wt(i - 1), value(i - 1)(j));
-* In Optimal strategy of a game, an array of integer is given, you will pick one of the corner coins such that in 
-  the end you have max coins, your opponent also plays like that. You will not max of corner coins if you are exposing 
+* In Optimal strategy of a game, an array of integer is given, you will pick one of the corner coins such that in
+  the end you have max coins, your opponent also plays like that. You will not max of corner coins if you are exposing
   a bigger coin for the opponent.In the case of (2, 3, 15, 7). You will pick 2, opponent will take 7, you will take 15
-  opponent will take 3. For this, pass an array, starting index i, ending index j, aTurn (boolean to 
+  opponent will take 3. For this, pass an array, starting index i, ending index j, aTurn (boolean to
   store if it is our turn or not). Since you are filling i, j in the fashion of (0,0) ,(1,1).. first and then
-  (0,1), (1,2), (2,3) and so on, we will fill the dp array such that diff = 0 till n - 1. If last turns is A, then you 
+  (0,1), (1,2), (2,3) and so on, we will fill the dp array such that diff = 0 till n - 1. If last turns is A, then you
   will fill dp(i, i) with all arr(i) values else you will keep it 0 because that was B's turn. If it is A's turn, then
   take Math.max(arr(i) + maxAmount(i + 1)(j), arr(j) + maxAmount(i)(j - 1)). If it is B's turn, then dont add array
   values and now you take the min because B would have taken the max Math.min(maxAmount(i + 1)(j), maxAmount(i)(j - 1))
   Flip aTurn after you have completed an iteration of diff.
-* 
   

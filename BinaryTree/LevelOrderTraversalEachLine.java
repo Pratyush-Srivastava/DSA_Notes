@@ -6,23 +6,50 @@ import java.util.Queue;
 public class LevelOrderTraversalEachLine {
     public static void main(String[] args) {
         Node root = initializeBinaryTree();
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.offer(root);
-        queue.offer(new Node());
-        while (queue.size() > 1) {
-            Node node = queue.poll();
-            if (node.data == null) {
+        System.out.println("Level order traversal using method 1 ");
+        levelOrderTraversalEachLineUsingMethod1(root);
+        System.out.println();
+        System.out.println("Level order traversal using method 2 ");
+        levelOrderTraversalEachLineUsingMethod2(root);
+    }
+
+    private static void levelOrderTraversalEachLineUsingMethod1(Node root) {
+        Queue<Node> q = new ArrayDeque<>();
+        q.offer(root);
+        q.offer(new Node());
+        while (q.size() != 1) {
+            Node current = q.poll();
+            if(current.data == null) {
                 System.out.println();
-                queue.offer(new Node());
+                q.offer(new Node());
             } else {
-                System.out.print(node.data + " ");
-                if (node.left != null) {
-                    queue.offer(node.left);
+                System.out.print(current.data + " ");
+                if(current.left != null) {
+                    q.offer(current.left);
                 }
-                if (node.right != null) {
-                    queue.offer(node.right);
+                if(current.right != null) {
+                    q.offer(current.right);
                 }
             }
+        }
+    }
+
+    private static void levelOrderTraversalEachLineUsingMethod2(Node root) {
+        Queue<Node> q = new ArrayDeque<>();
+        q.offer(root);
+        while (!q.isEmpty()) {
+            int size = q.size();
+            for (int i = 0; i < size; i++) {
+                Node current = q.poll();
+                System.out.print(current.data + " ");
+                if(current.left != null) {
+                    q.offer(current.left);
+                }
+                if(current.right != null) {
+                    q.offer(current.right);
+                }
+            }
+            System.out.println();
         }
     }
 

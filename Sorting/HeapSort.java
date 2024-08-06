@@ -1,6 +1,6 @@
 package Sorting;
 
-import java.util.*;
+import java.util.Arrays;
 
 public class HeapSort {
 
@@ -12,40 +12,42 @@ public class HeapSort {
     }
 
     private static void heapSort(int[] arr) {
-        System.out.println("Before Sorting: " + Arrays.toString(arr));
+        int n = arr.length;
         buildHeap(arr);
-        for (int i = arr.length - 1; i > 0; i--) {
-            swap(arr, i, 0);
-            maxHeapify(arr, 0, 0, i - 1);
+        //max heap is created
+        for (int i = n - 1; i >= 1; i--) {
+            swap(arr, 0, i);
+            maxHeapify(0, arr, i);
         }
-        System.out.println("After Sorting: " + Arrays.toString(arr));
+        System.out.println("Sorted: " + Arrays.toString(arr));
     }
-
 
     private static void buildHeap(int[] arr) {
-        int lastLeaf = arr.length - 1;
-        int lastInternalNode = (lastLeaf - 1) / 2;
-        for (int internalNode = lastInternalNode; internalNode >= 0; internalNode--) {
-            maxHeapify(arr, internalNode, 0, arr.length - 1);
+        //arr is a complete graph where n - 1 is the last node. To get its parent, do (i-1)/2
+        //Note children are 2 * parent + 1 and 2 * parent + 2
+        //Note parent is (children - 1)/2
+        //For n-1, the parent will be (n-2)/2
+        int n = arr.length;
+        for (int i = (n - 2) / 2; i >= 0; i--) {
+            maxHeapify(i, arr, n);
         }
+        System.out.println("After building heap: " + Arrays.toString(arr));
     }
 
-    //formula for left child is 2i+1 and right child is 2i+2
-    //formula for parent is (i-1)/2
-    private static void maxHeapify(int[] arr, int i, int low, int high) {
-
-        int largest = i;
-        int leftChild = 2 * i + 1;
-        int rightChild = 2 * i + 2;
-        if (leftChild <= high && arr[leftChild] > arr[largest]) {
-            largest = leftChild;
+    private static void maxHeapify(int parent, int[] arr, int size) {
+        int left = 2 * parent + 1;
+        int right = 2 * parent + 2;
+        int largest = parent;
+        if (left < size && arr[largest] < arr[left]) {
+            largest = left;
         }
-        if (rightChild <= high && arr[rightChild] > arr[largest]) {
-            largest = rightChild;
+        if (right < size && arr[largest] < arr[right]) {
+            largest = right;
         }
-        if (largest != i) {
-            swap(arr, i, largest);
-            maxHeapify(arr, largest, low, high);
+        if (largest != parent) {
+            swap(arr, parent, largest);
+            //largest will now have the smaller element which got swapped
+            maxHeapify(largest, arr, size);
         }
     }
 
