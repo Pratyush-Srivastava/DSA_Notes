@@ -5,7 +5,7 @@
   return b - a;
   });
   Collections.sort(Arrays.asList(1, 2, 3), (a, b) -> {
-  return b - a;
+  return b - a; //reverse sorting
   });
 * Stability in sorting means if order of same elements remain same as original array.
   Stable: bubble sort, insertion sort, merge sort
@@ -13,8 +13,8 @@
 * In Bubble sort, we compare adjacent elements and swap if first is bigger than second. In the end of first iteration,
   the last position is set. In the second iteration, the second last position is set. In this way, all elements are
   sorted. This is a stable sorting algo because it doesn't swap if they are equal. O(n^2)
-* In selection sort, we find min of all elements and swap it with first unsorted element. In the end of first iteration,
-  the min element is at the first. Keep doing this until all elements are sorted. This is unstable sort O(n^2). It
+* In selection sort, we find max of all elements and swap it with last unsorted element. In the end of first iteration,
+  the max element is at the last. Keep doing this until all elements are sorted. This is unstable sort O(n^2). It
   does less number of writes but cycle sort is most optimal for less number of writes.
 * Insertion sort is used for smaller arrays. It is stable. You have two parts in an array. The left part is sorted. The
   right part is unsorted. Initially have only one element in sorted. With each iteration, the sorted array grows. In

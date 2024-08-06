@@ -6,11 +6,9 @@
   can add or remove items.
 * String[] staticArray = {"a", "b"};. This will be a static array. You cannot add or remove items
 * List<Integer> list = new ArrayList<Integer>();
-  list.add(1); list.add(2); list.add(3); list.add(4);
-  // Remove element at index 2 (element 3). Passing int index
-  list.remove(2);
-  // Remove the first occurrence of element 2. Passing Integer object
-  list.remove(Integer.valueOf(2));
+  list.add(1); list.add(2); list.add(3); list.add(4); 
+  list.remove(2); (Remove element at index 2 (element 3). Passing int index)
+  list.remove(Integer.valueOf(2)); (Remove the first occurrence of element 2. Passing Integer object)
 * To rotate array by d in-place, reverse first d, reverse last d and then reverse entire array.
 * For trapping rain water problem, we need to find min(lmax, rmax)- arr(i)
 * To find maximum sub-array sum you need to use Kadane's algorithm for both positive and negative integers. Initialize

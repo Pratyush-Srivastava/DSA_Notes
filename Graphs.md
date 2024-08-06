@@ -18,17 +18,14 @@
   everything. This is used for path finding and maze solving.
 * If the component is disconnected, we run a loop for all the vertices and do DFS/BFS for each every node not visited.
   Increment the count to get the number of connected components. Back tracking uses DFS. While solving graph
-  questions,
-  remember it could be a disconnected graph.
+  questions, remember it could be a disconnected graph.
 * For shortest path in an unweighted graph (directed or undirected) from source to all other nodes, do BFS and keep
-  updating the distance array
-  if the distance is lesser than the existing distance.
+  updating the distance array if the distance is lesser than the existing distance.
 * For shortest path in a weighted (directed or undirected) with non-negative edges, you need to follow dijkstra which
   is similar to prim's algorithm. You need to take a priority queue and keys array for storing vertex and keys. Also,
   take a visited array to see if the shortest till that point is found. While the priority queue is not empty, poll
   the vertex with minimum key and if it is not visited, go through all the unvisited neighbors and relax all the edges
-  if
-  minKey + edgeLength is smaller than current key and also offer that in the priority queue.
+  if minKey + edgeLength is smaller than current key and also offer that in the priority queue.
 * For shortest path in a weighted directed acyclic graph (DAG), you can use topological sorting and then iterate over
   that array and perform edge relaxation which is to check min(source + edge, neighbor) and assign to neighbor. Make
   sure you don't add anything to MAX_VALUE.
@@ -37,15 +34,14 @@
   through all edges. Come out of the loop and traverse all edges once more and if any edge relaxes then there is a
   negative egde cycle.
 
-| **Shortest path from source** | **Unweighted**       | **Weighted**                                                    |
-|-------------------------------|----------------------|-----------------------------------------------------------------|
+| **Shortest path from source** | **Unweighted**       | **Weighted**                                                                                      |
+|-------------------------------|----------------------|---------------------------------------------------------------------------------------------------|
 | **Directed**                  | BFS                  | Topological Sort (DAG only) or Dijkstra (non-negative weights) or Bellman ford (negative weights) |
-| **Undirected**                | BFS                  | Dijkstra or Bellman ford (negative weights)                                                    |
+| **Undirected**                | BFS                  | Dijkstra (non-negative weights) or Bellman ford (negative weights)                                                      |
 
 * For cycle detection in undirected graph, do BFS and store each parent in an array. if a neighbor is visited, and it
   is not the parent, then cycle exists. Or another solution would be use DFS and with each recursion call, pass the
-  parent
-  and check the same condition if the neighbor is visited, and it is not the parent, then cycle exists.
+  parent and check the same condition if the neighbor is visited, and it is not the parent, then cycle exists.
 * For cycle detection in directed graph, you need to do DFS and maintain both recursion array along with visited
   array, and you need to reset the recursion array boolean to false after iterating all the neighbors. There will be
   a cycle if it is visited and also part of recursion array. This is also called as a back edge.
@@ -71,36 +67,28 @@
   This will be O(E Log V)
 * To find articulation points (if you remove these nodes then connected components > 1) in undirected graph, we need to
   have discovery time, lowest ancestor discovery time reachable, parent, visited array and then do dfs for every
-  unvisited node.
-  Imagine a dfs tree for this. Mark all the visited nodes and initialize the discovery time and lowest ancestor
-  reachable using
-  global ++time variable. mark all the parents and count children for each u parent. If it is visited and not the
-  parent,
-  then that is a back edge and then update lowestAncestor(u) = min(lowestAncestor(u), discovery(v)). If not visited,
-  then after traversing all children, update lowestAncestor(u) = min(lowestAncestor(u), lowestAncestor(v)). If it is
-  root parent == -1 and children > 1, then it is an articulation point. If it is not root parent != -1 and
-  lowestAncestor(v) >= discovery(u), then it is an articulation point
+  unvisited node. Imagine a dfs tree for this. Mark all the visited nodes and initialize the discovery time and lowest
+  ancestor reachable using global ++time variable. mark all the parents and count children for each u parent. If it is
+  visited and not the parent, then that is a back edge and then update
+  lowestAncestor(u) = min(lowestAncestor(u), discovery(v)). If not visited, then after traversing all children, update
+  lowestAncestor(u) = min(lowestAncestor(u), lowestAncestor(v)). If it is root parent == -1 and children > 1, then it
+  is an articulation point. If it is not root parent != -1 and lowestAncestor(v) >= discovery(u), then it is an
+  articulation point.
 * To find bridges (if you remove these edges then connected components > 1) in undirected graph, we need to
   have discovery time, lowest ancestor discovery time reachable, parent, visited array and then do dfs for every
-  unvisited node.
-  Imagine a dfs tree for this. Mark all the visited nodes and initialize the discovery time and lowest ancestor
-  reachable using
-  global ++time variable. mark all the parents. If it is visited and not the parent, then that is a back edge and then
-  update lowestAncestor(u) = min(lowestAncestor(u), discovery(v)). If not visited,
+  unvisited node. Imagine a dfs tree for this. Mark all the visited nodes and initialize the discovery time and lowest
+  ancestor reachable using global ++time variable. Mark all the parents. If it is visited and not the parent, then that
+  is a back edge and then update lowestAncestor(u) = min(lowestAncestor(u), discovery(v)). If not visited,
   then after traversing all children, update lowestAncestor(u) = min(lowestAncestor(u), lowestAncestor(v)).
   If lowestAncestor(v) > discovery(u) (Note there is no equality), then it is a bridge.
 * For undirected graph, You can just use dfs or bfs to find strongly connected components.
-* For directed graph, to find strongly connected components, you need to use Tarjan's algorithm. You need to do dfs in
-  this. Keep track of disc, low, visited, inStack, stack. Mark
 * For directed graph, to find strongly connected components (Each node can reach every other node within a component),
-  we
-  need to have discovery time, lowest ancestor discovery time reachable, (you dont need parent in directed graph),
-  visited
-  array and then do dfs for every unvisited node. Imagine a dfs tree for this. Mark all the visited nodes and initialize
-  the discovery time and lowest ancestor reachable using global ++time variable. Also push this into stack like how you
-  did for cycle detection. If it is visited and present in stack, it means it is a back edge and not a cross-edge, then
-  update lowestAncestor(u) = min(lowestAncestor(u), discovery(v)). If not visited, then after traversing all children,
-  update lowestAncestor(u) = min(lowestAncestor(u), lowestAncestor(v)). After the for loop of traversing all the
-  children,
-  check if the discovery time(u) = lowestAncestor(u), then this is the beginning of a strongly connected component, pop
-  each item and add to list and do this until you reach u (add u as well). Add this component to the master list.
+  we need to have discovery time, lowest ancestor discovery time reachable, (you don't need parent in directed graph),
+  visited array and then do dfs for every unvisited node. Imagine a dfs tree for this. Mark all the visited nodes and
+  initialize the discovery time and lowest ancestor reachable using global ++time variable. Also push this into stack
+  like how you did for cycle detection. If it is visited and present in stack, it means it is a back edge and not a
+  cross-edge, then update lowestAncestor(u) = min(lowestAncestor(u), discovery(v)). If not visited, then after
+  traversing all children, update lowestAncestor(u) = min(lowestAncestor(u), lowestAncestor(v)). After the for loop of
+  traversing all the children, check if the discovery time(u) = lowestAncestor(u), then this is the beginning of a
+  strongly connected component, pop each item and add to list and do this until you reach u (add u as well). Add this
+  component to the master list.

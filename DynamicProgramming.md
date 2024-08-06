@@ -15,28 +15,23 @@
 * LCS can be used in space optimized version of LCS where you can do it in space complexity of 2 * m or 2 *n
 * Printing LCS (you can create a String[][] and append the character if it matches, else take the max length string)
 * Number of combinations of coins to get certain sum, we can either include a coin or not include it. So you can
-  consider
-  a coins array of size N, you can consider the last coin (N, sum - coins(N-1)) or ignore the last coin (N - 1, sum).
-  Assuming here that we have infinity coins. Check for index negative in the case of considering the last coin.
-  Remember,
-  ways(i)(0) will be 1 because we have reached sum 0, even the case when n = 0. Not picking the coin with sum 0 is also
-  a way.
+  consider a coins array of size N, you can consider the last coin (N, sum - coins(N-1)) or ignore the last
+  coin (N - 1, sum). Assuming here that we have infinity coins. Check for index negative in the case of considering the
+  last coin. Remember, ways(i)(0) will be 1 because we have reached sum 0, even the case when n = 0. Not picking the
+  coin with sum 0 is also a way.
 * To find the minimum edit distance to convert from one string to another where each operation of insert, delete or
-  replace
-  will cost you 1 distance, you need to compare the last character of both strings and see if it is equal. If yes, you
-  can
-  just take the editDist(i-1, j-1), else you can take minimum of insertion (i, j-1), deletion (i - 1, j), and
-  replacement
-  (i - 1, j -1) and add 1 cost to it. You should also fill the base cases edit(i)(0) and edit(0)(j) in incrementing
-  numbers
-  because an empty string will take n characters to reach a string of length n.
-* To find the longest increasing solution, you need to take an approach which is different from other dynamic solutions,
-  initialize a tail array of same length as your array and also a len variable which will go as big as tail elements.
-  Tail element means the last element ending with i. Initialize tail(0) = arr(0) and len = 1. Now, iterate over arr.
-  If you find arr(i) > tail(len - 1), then tail(len) = arr(i) and do len++; if that condition fails, then you need to
-  put arr(i) in the right place in the existing sorted array. To do that you need to replace ceil(arr(i)) with arr(i);
-  Basically, int c = ceil(tail, 0, len -1, arr(i))
-  tail(c) = arr(i); In the end return len. Note that tail will always be sorted at any point but may not contain the
+  replace will cost you 1 distance, you need to compare the last character of both strings and see if it is equal.
+  If yes, you can just take the editDist(i-1, j-1), else you can take minimum of insertion (i, j-1),
+  deletion (i - 1, j), and replacement (i - 1, j -1) and add 1 cost to it. You should also fill the base cases
+  edit(i)(0) and edit(0)(j) in incrementing numbers because an empty string will take n characters to reach a string
+  of length n.
+* To find the longest increasing subsequence solution, you need to take an approach which is different from other
+  dynamic solutions, initialize a tail array of same length as your array and also a len variable which will go as big
+  as tail elements. Tail element means the last element ending with i. Initialize tail(0) = arr(0) and len = 1. Now,
+  iterate over arr. If you find arr(i) > tail(len - 1), then tail(len) = arr(i) and do len++; if that condition fails,
+  then you need to put arr(i) in the right place in the existing sorted array. To do that you need to replace
+  ceil(arr(i)) with arr(i); Basically, int c = ceil(tail, 0, len -1, arr(i)) tail(c) = arr(i);
+  In the end return len. Note that tail will always be sorted at any point but may not contain the
   longest subsequence because we are replacing existing subsequences to save space. We just need the length. If you need
   to print, keep track of predecessors and index. This solution is (N logN) We have another solution which is N^2.
   In this solution we maintain another lis array of size N, where we store the lis(j) ending with j in arr
@@ -57,16 +52,16 @@
   LIS based on second value. It need not be longest strictly increasing, just increasing is fine. We can do it in NLogN
 * LIS can be used in the longest chain problem. We are given pairs of element (a,b) such that (a<b). (a,b) can form a
   chain with (c,d) if b < c. First we need to sort by first values and then do LIS. While comparing two pairs, compare
-  b < c and then only calculate LIS. Doing this by tail method can be complicated because pairs p (5,24) q(15,28) r(
-  27,40)
-  Here, p > q and q > r but p < r. For n log n you need to sort second values instead of first values.
+  b < c and then only calculate LIS. Doing this by tail method can be complicated because pairs
+  p (5,24) q(15,28) r(27,40) Here, p > q and q > r but p < r. For nlogn you need to sort second values instead of
+  first values.
 * Maximum cuts in a rod with certain allowed lengths is a problem like number of combinations of coins to get certain
   sum. At each point, we need to either consider a specific length or not consider it all. If you consider it, you need
   to add 1 to it and if you do not consider it you have to reduce that length from allowed lengths,
   Math.max(1 + maxCuts(i)(j - allowedLengths(i - 1)), maxCuts(i - 1)(j)). Also take care of results with -1. A problem
   of recursion could be of two types, one is consider that item/ not consider that item at all. Another type would be
-  consider each item and reduce for all the items. Certain problems will alow only one option. If you take number of
-  combinations of coins problem (1,1,2) is same as (2, 1, 1) so be careful will selecting that approach.
+  consider each item and reduce for all the items. Certain problems will allow only one option. If you take number of
+  combinations of coins problem (1,1,2) is same as (2, 1, 1) so be careful while selecting the approach.
 * Minimum coins to make a value when you are given a list of denominations. You can take both recursive approaches
   but approach of selecting each item can gives you space complexity of O(n).
   For minimumCoins(n) = Min(minimumCoins(n - den(0)) + 1, minimumCoins(n - den(1)) + 1, minimumCoins(n - den(2)) + 1...)

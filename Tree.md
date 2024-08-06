@@ -22,8 +22,8 @@
   assign root.left and root.right. Similarly, it can be done using other pair of traversals.
 * To find the lowest common ancestor of two nodes, there are two methods. One would be to find the path of each node and
   store it in two arrays. To find path, add the root to the list before calling for children. Then after calling them,
-  remove the last item from the list. Iterate both arrays and return the last common element. Another method would be
-  (this method assumes that both the nodes are present in the tree or none of them are present) Do recursive, if you
-  find the root is one of the values, you just return that root. Go to left and right subtree. If both are not null
-  then return root. This will happen only when each child has one node. If only one of them has it, then return that
-  value. If none of them has it, return null.
+  remove the last item from the list if node is not found in that path. Iterate both arrays and return the last common
+  element. Another method would be (this method assumes that both the nodes are present in the tree or none of them are
+  present) Do recursive, if you find the root is one of the values, you just return that root. Go to left and right
+  subtree. If both are not null then return root. This will work only when each child has one node. If only one of
+  them has it, then return that value. If none of them has it, return null.
